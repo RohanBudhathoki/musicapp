@@ -5,6 +5,7 @@ import 'package:injectable/injectable.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:mobx/mobx.dart';
 import 'package:musicapp/features/musicplayer/domain/repo/music_player_repo.dart';
+import 'package:rxdart/rxdart.dart';
 
 part 'audio_store.g.dart';
 
@@ -51,10 +52,11 @@ abstract class _AudioStore with Store {
       isPlaying = state.playing;
     });
 
-    _positionSubscription = positionStream.listen((pos) {
-      currentPosition = pos;
-    });
-
+    _positionSubscription = positionStream
+        .throttleTime(const Duration(milliseconds: 1))
+        .listen((pos) {
+          currentPosition = pos;
+        });
     _durationSubscription = durationStream.listen((dur) {
       currentDuration = dur ?? Duration.zero;
     });

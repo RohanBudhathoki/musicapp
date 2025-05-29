@@ -41,18 +41,18 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     gh.lazySingleton<_i267.AudioRepository>(() => _i496.AudioRepositoryImpl());
-    gh.lazySingleton<_i986.PauseAudio>(
-        () => _i986.PauseAudio(gh<_i267.AudioRepository>()));
     gh.lazySingleton<_i600.PlayAudio>(
         () => _i600.PlayAudio(gh<_i267.AudioRepository>()));
-    gh.lazySingleton<_i869.PlayMainAudioLoop>(
-        () => _i869.PlayMainAudioLoop(gh<_i267.AudioRepository>()));
-    gh.lazySingleton<_i903.PlayWelcomeAudio>(
-        () => _i903.PlayWelcomeAudio(gh<_i267.AudioRepository>()));
-    gh.lazySingleton<_i627.SeekAudio>(
-        () => _i627.SeekAudio(gh<_i267.AudioRepository>()));
+    gh.lazySingleton<_i986.PauseAudio>(
+        () => _i986.PauseAudio(gh<_i267.AudioRepository>()));
     gh.lazySingleton<_i564.SetSpeed>(
         () => _i564.SetSpeed(gh<_i267.AudioRepository>()));
+    gh.lazySingleton<_i627.SeekAudio>(
+        () => _i627.SeekAudio(gh<_i267.AudioRepository>()));
+    gh.lazySingleton<_i903.PlayWelcomeAudio>(
+        () => _i903.PlayWelcomeAudio(gh<_i267.AudioRepository>()));
+    gh.lazySingleton<_i869.PlayMainAudioLoop>(
+        () => _i869.PlayMainAudioLoop(gh<_i267.AudioRepository>()));
     gh.factory<_i91.AudioStore>(
         () => _i91.AudioStore(gh<_i267.AudioRepository>()));
     return this;

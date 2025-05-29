@@ -4,6 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:musicapp/core/dependecy_injection/injectable_config.dart';
 import 'package:musicapp/core/utils/ui_helper.dart';
 import 'package:musicapp/features/musicplayer/presentation/store/audio_store.dart';
+import 'package:musicapp/features/musicplayer/presentation/ui/widget/controls_button.dart';
+import 'package:musicapp/features/musicplayer/presentation/ui/widget/cover_art_animation.dart';
+import 'package:musicapp/features/musicplayer/presentation/ui/widget/seek_slider.dart';
+import 'package:musicapp/features/musicplayer/presentation/ui/widget/speed_control.dart';
 
 class AudioPlayerScreen extends StatefulWidget {
   const AudioPlayerScreen({super.key});
@@ -30,192 +34,52 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffE4F0FA),
       appBar: AppBar(
+        backgroundColor: Color(0xffE4F0FA),
         title: Text(
           'Now Playing',
           style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: EdgeInsets.all(16.w),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Observer(
-              builder: (_) {
-                final imagePath =
-                    store.currentAudioIndex == 0
-                        ? 'assets/png/welcome.png'
-                        : 'assets/png/shape_of_you_cover.png';
-
-                return Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Container(
-                      height: 250.r,
-                      width: 250.r,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        gradient: RadialGradient(
-                          colors: [Colors.black87, Colors.black45],
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black12,
-                            blurRadius: 10,
-                            offset: Offset(0, 10),
-                          ),
-                        ],
-                      ),
-                    ),
-                    CircleAvatar(
-                      radius: 80.r,
-                      backgroundImage: AssetImage(imagePath),
-                    ),
-                  ],
-                );
-              },
-            ),
-
-            UiHelper.verticalSpacing(32.h),
-
-            _buildSeekSlider(store),
-
-            UiHelper.verticalSpacing(24.h),
-
-            _buildControlsRow(store),
-
-            UiHelper.verticalSpacing(32.h),
-
-            _buildSpeedControl(store),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildControlsRow(AudioStore store) {
-    return Observer(
-      builder:
-          (_) => Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              IconButton(
-                iconSize: 36.w,
-                icon: const Icon(Icons.replay_5),
-                onPressed: () {
-                  final newPosition =
-                      store.currentPosition - Duration(seconds: 5);
-                  store.seek(
-                    newPosition > Duration.zero ? newPosition : Duration.zero,
-                  );
-                },
-                tooltip: 'Rewind 5 seconds',
-              ),
-              SizedBox(width: 24.w),
-              IconButton(
-                iconSize: 72.w,
-                icon: Icon(
-                  store.isPlaying ? Icons.pause_circle : Icons.play_circle,
-                ),
-                onPressed: () => store.isPlaying ? store.pause() : store.play(),
-                tooltip: store.isPlaying ? 'Pause' : 'Play',
-              ),
-              SizedBox(width: 24.w),
-              IconButton(
-                iconSize: 36.w,
-                icon: const Icon(Icons.forward_5),
-                onPressed: () {
-                  final newPosition =
-                      store.currentPosition + Duration(seconds: 5);
-                  store.seek(
-                    newPosition < store.currentDuration
-                        ? newPosition
-                        : store.currentDuration,
-                  );
-                },
-                tooltip: 'Forward 5 seconds',
-              ),
-            ],
-          ),
-    );
-  }
-
-  Widget _buildSeekSlider(AudioStore store) {
-    return StreamBuilder<Duration>(
-      stream: store.positionStream,
-      builder: (context, positionSnapshot) {
-        final position = positionSnapshot.data ?? Duration.zero;
-
-        return StreamBuilder<Duration?>(
-          stream: store.durationStream,
-          builder: (context, durationSnapshot) {
-            final duration = durationSnapshot.data ?? Duration.zero;
-
-            final current = position.inMilliseconds.toDouble();
-            final max = duration.inMilliseconds.toDouble();
-
-            return Column(
+      body: Stack(
+        children: [
+          Padding(
+            padding: EdgeInsets.all(16.w),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Slider(
-                  min: 0,
-                  max: max > 0 ? max : 1,
-                  value: current.clamp(0, max),
-                  onChanged: (value) {
-                    store.seek(Duration(milliseconds: value.toInt()));
+                Observer(
+                  builder: (_) {
+                    final imagePath =
+                        store.currentAudioIndex == 0
+                            ? 'assets/png/welcome.png'
+                            : 'assets/png/shape_of_you_cover.png';
+
+                    return SpinningCoverArt(
+                      imagePath: imagePath,
+                      isPlaying: store.isPlaying,
+                    );
                   },
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      _formatDuration(position),
-                      style: TextStyle(fontSize: 14.sp),
-                    ),
-                    Text(
-                      _formatDuration(duration),
-                      style: TextStyle(fontSize: 14.sp),
-                    ),
-                  ],
-                ),
+
+                UiHelper.verticalSpacing(32.h),
+                SeekBar(store: store),
+                UiHelper.verticalSpacing(24.h),
+                NeumorphicControlsRow(store: store),
+                UiHelper.verticalSpacing(32.h),
               ],
-            );
-          },
-        );
-      },
-    );
-  }
-
-  Widget _buildSpeedControl(AudioStore store) {
-    return Observer(
-      builder:
-          (_) => Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Speed: ', style: TextStyle(fontSize: 16.sp)),
-              DropdownButton<double>(
-                value: store.speed,
-                items:
-                    const [0.5, 0.75, 1.0, 1.25, 1.5, 2.0].map((speed) {
-                      return DropdownMenuItem(
-                        value: speed,
-                        child: Text('${speed}x'),
-                      );
-                    }).toList(),
-                onChanged: (value) {
-                  if (value != null) store.setSpeed(value);
-                },
-              ),
-            ],
+            ),
           ),
-    );
-  }
 
-  String _formatDuration(Duration duration) {
-    String twoDigits(int n) => n.toString().padLeft(2, '0');
-    final minutes = twoDigits(duration.inMinutes.remainder(60));
-    final seconds = twoDigits(duration.inSeconds.remainder(60));
-    return "$minutes:$seconds";
+          Positioned(
+            top: 16.h,
+            right: 16.w,
+            child: NeumorphicSpeedControl(store: store),
+          ),
+        ],
+      ),
+    );
   }
 }
