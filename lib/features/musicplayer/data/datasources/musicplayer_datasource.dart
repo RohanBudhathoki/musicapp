@@ -4,7 +4,6 @@ import 'package:musicapp/core/res/const/app_audio.dart';
 import 'package:musicapp/features/musicplayer/domain/repo/music_player_repo.dart';
 
 @LazySingleton(as: AudioRepository)
-@LazySingleton(as: AudioRepository)
 class AudioRepositoryImpl implements AudioRepository {
   final AudioPlayer _audioPlayer = AudioPlayer();
 
@@ -62,7 +61,7 @@ class AudioRepositoryImpl implements AudioRepository {
     try {
       await _audioPlayer.pause();
     } catch (e) {
-      print("AudioPlayer pause error: $e");
+      throw e;
     }
   }
 

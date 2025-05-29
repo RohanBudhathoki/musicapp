@@ -15,33 +15,14 @@ class AudioPlayerScreen extends StatefulWidget {
 class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
   late final AudioStore store;
 
-  Duration currentPosition = Duration.zero;
-  Duration currentDuration = Duration.zero;
-
-  bool _isMounted = true;
-
   @override
   void initState() {
     super.initState();
     store = sl<AudioStore>();
-
-    store.positionStream.listen((pos) {
-      if (!_isMounted) return;
-      setState(() {
-        currentPosition = pos;
-      });
-    });
-    store.durationStream.listen((dur) {
-      if (!_isMounted) return;
-      setState(() {
-        currentDuration = dur ?? Duration.zero;
-      });
-    });
   }
 
   @override
   void dispose() {
-    _isMounted = false;
     store.dispose();
     super.dispose();
   }
@@ -103,7 +84,8 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
                 iconSize: 36.w,
                 icon: const Icon(Icons.replay_5),
                 onPressed: () {
-                  final newPosition = currentPosition - Duration(seconds: 5);
+                  final newPosition =
+                      store.currentPosition - Duration(seconds: 5);
                   store.seek(
                     newPosition > Duration.zero ? newPosition : Duration.zero,
                   );
@@ -124,11 +106,12 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
                 iconSize: 36.w,
                 icon: const Icon(Icons.forward_5),
                 onPressed: () {
-                  final newPosition = currentPosition + Duration(seconds: 5);
+                  final newPosition =
+                      store.currentPosition + Duration(seconds: 5);
                   store.seek(
-                    newPosition < currentDuration
+                    newPosition < store.currentDuration
                         ? newPosition
-                        : currentDuration,
+                        : store.currentDuration,
                   );
                 },
                 tooltip: 'Forward 5 seconds',
