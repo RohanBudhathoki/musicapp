@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:musicapp/core/dependecy_injection/injectable_config.dart';
+import 'package:musicapp/core/res/const/app_color.dart';
 import 'package:musicapp/core/utils/ui_helper.dart';
 import 'package:musicapp/features/musicplayer/presentation/store/audio_store.dart';
 import 'package:musicapp/features/musicplayer/presentation/ui/widget/controls_button.dart';
@@ -35,9 +36,9 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffE4F0FA),
+      backgroundColor: AppColor.bgColor,
       appBar: AppBar(
-        backgroundColor: Color(0xffE4F0FA),
+        backgroundColor: AppColor.bgColor,
         title: Text(
           'Now Playing',
           style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),

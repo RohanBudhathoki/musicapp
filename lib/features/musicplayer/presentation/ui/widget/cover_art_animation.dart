@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:musicapp/core/res/const/app_color.dart';
 import 'package:musicapp/gen/assets.gen.dart';
 
 class SpinningCoverArt extends StatefulWidget {
@@ -63,8 +64,8 @@ class _SpinningCoverArtState extends State<SpinningCoverArt>
         surfaceIntensity: 0.3,
         boxShape: NeumorphicBoxShape.circle(),
         color: const Color(0xFFEAF6FE),
-        shadowDarkColor: Colors.black26,
-        shadowLightColor: Colors.white,
+        shadowDarkColor: AppColor.shadowColor,
+        shadowLightColor: AppColor.whiteColor,
       ),
       child: Container(
         height: 300.r,

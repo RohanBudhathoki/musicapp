@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:musicapp/core/res/const/app_color.dart';
 import 'package:musicapp/features/musicplayer/presentation/store/audio_store.dart';
 
 class SeekBar extends StatefulWidget {
@@ -28,7 +29,7 @@ class _SeekBarState extends State<SeekBar> {
         return Column(
           children: [
             Slider(
-              activeColor: Color(0xffF9B9B0),
+              activeColor: AppColor.sliderColor,
               min: 0,
               max: duration > 0 ? duration : 1,
               value: currentValue.clamp(0, duration),

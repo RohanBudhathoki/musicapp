@@ -2,6 +2,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:musicapp/core/res/const/app_color.dart' show AppColor;
 import 'package:musicapp/features/musicplayer/presentation/store/audio_store.dart';
 
 class NeumorphicSpeedControl extends StatelessWidget {
@@ -30,8 +31,8 @@ class NeumorphicSpeedControl extends StatelessWidget {
                 intensity: 0.8,
                 shape: NeumorphicShape.flat,
                 color: const Color(0xFFEAF6FE),
-                shadowDarkColor: Colors.black26,
-                shadowLightColor: Colors.white,
+                shadowDarkColor: AppColor.shadowColor,
+                shadowLightColor: AppColor.whiteColor,
               ),
               padding: EdgeInsets.zero,
               child: Container(
