@@ -8,6 +8,7 @@ import 'package:musicapp/features/musicplayer/presentation/ui/widget/controls_bu
 import 'package:musicapp/features/musicplayer/presentation/ui/widget/cover_art_animation.dart';
 import 'package:musicapp/features/musicplayer/presentation/ui/widget/seek_slider.dart';
 import 'package:musicapp/features/musicplayer/presentation/ui/widget/speed_control.dart';
+import 'package:musicapp/gen/assets.gen.dart';
 
 class AudioPlayerScreen extends StatefulWidget {
   const AudioPlayerScreen({super.key});
@@ -54,8 +55,8 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
                   builder: (_) {
                     final imagePath =
                         store.currentAudioIndex == 0
-                            ? 'assets/png/welcome.png'
-                            : 'assets/png/shape_of_you_cover.png';
+                            ? Assets.png.welcome.path
+                            : Assets.png.shapeOfYouCover.path;
 
                     return SpinningCoverArt(
                       imagePath: imagePath,

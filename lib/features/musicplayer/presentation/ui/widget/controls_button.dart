@@ -2,6 +2,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:musicapp/features/musicplayer/presentation/store/audio_store.dart';
+import 'package:musicapp/gen/assets.gen.dart';
 
 class NeumorphicControlsRow extends StatelessWidget {
   final AudioStore store;
@@ -16,7 +17,7 @@ class NeumorphicControlsRow extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               _buildNeumorphicImageButton(
-                image: Image.asset('assets/png/previous.png'),
+                image: Image.asset(Assets.png.previous.path),
                 size: 60.w,
                 onTap: () {
                   final newPosition =
@@ -36,7 +37,7 @@ class NeumorphicControlsRow extends StatelessWidget {
               ),
               SizedBox(width: 24.w),
               _buildNeumorphicImageButton(
-                image: Image.asset('assets/png/next.png'),
+                image: Image.asset(Assets.png.next.path),
                 size: 60.w,
                 onTap: () {
                   final newPosition =

@@ -1,7 +1,8 @@
 import 'package:injectable/injectable.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:musicapp/core/res/const/app_audio.dart';
+
 import 'package:musicapp/features/musicplayer/domain/repo/music_player_repo.dart';
+import 'package:musicapp/gen/assets.gen.dart';
 
 @LazySingleton(as: AudioRepository)
 class AudioRepositoryImpl implements AudioRepository {
@@ -35,8 +36,8 @@ class AudioRepositoryImpl implements AudioRepository {
 
     _playlist = ConcatenatingAudioSource(
       children: [
-        AudioSource.asset(AudioPaths.welcome),
-        AudioSource.asset(AudioPaths.main),
+        AudioSource.asset(Assets.audios.welcomeAudio),
+        AudioSource.asset(Assets.audios.shapeOfYou),
       ],
     );
 

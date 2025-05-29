@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:musicapp/gen/assets.gen.dart';
 
 class SpinningCoverArt extends StatefulWidget {
   final String imagePath;
@@ -83,8 +84,8 @@ class _SpinningCoverArtState extends State<SpinningCoverArt>
             width: 250.r,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              image: const DecorationImage(
-                image: AssetImage("assets/png/cover_bg.png"),
+              image: DecorationImage(
+                image: AssetImage(Assets.png.coverBg.path),
                 fit: BoxFit.cover,
               ),
             ),

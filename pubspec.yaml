@@ -29,14 +29,26 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-
+  flutter_gen_runner: ^5.3.1
+  
   flutter_lints: ^5.0.0
   build_runner: ^2.4.6
   mobx_codegen: ^2.4.0
- 
+  flutter_launcher_icons: ^0.13.1
   injectable_generator: ^2.4.1
 
+flutter_gen:
+  output: lib/gen/ 
+  line_length: 80
+  assets:
+    enabled: true
+  integrations:
+    flutter_svg: true
 
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/png/launcher_icon.png"
 
 flutter:
 
