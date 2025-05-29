@@ -71,9 +71,13 @@ lib/
  -  🎵 assets/audios/ – Local audio files bundled with the app
  -  🖼️ assets/png/ – App graphics, icons, and UI elements
 
+
 ---
 ##📸 Screenshots
- ![simulator_screenshot_6BAF1308-250A-40E6-96D3-0115346FED14](https://github.com/user-attachments/assets/dfe4721b-1634-4310-ba64-bbcd99a9715b)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/6d559aee-639d-47d7-83bd-ff19fc609478" width="250">
+</p>
+
 ---
 ##📄 License
   - 🔒 This project was developed exclusively for evaluation purposes.
