@@ -45,10 +45,7 @@ flutter_gen:
   integrations:
     flutter_svg: true
 
-flutter_launcher_icons:
-  android: true
-  ios: true
-  image_path: "assets/png/launcher_icon.png"
+
 
 flutter:
 

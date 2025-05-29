@@ -1,3 +1,6 @@
+// ignore_for_file: deprecated_member_use
+
+import 'package:flutter/rendering.dart';
 import 'package:injectable/injectable.dart';
 import 'package:just_audio/just_audio.dart';
 
@@ -62,7 +65,7 @@ class AudioRepositoryImpl implements AudioRepository {
     try {
       await _audioPlayer.pause();
     } catch (e) {
-      throw e;
+      debugPrint(e.toString());
     }
   }
 

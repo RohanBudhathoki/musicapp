@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:musicapp/gen/assets.gen.dart';
 
 class SpinningCoverArt extends StatefulWidget {
-  final String imagePath;
+  final AssetGenImage imagePath;
   final bool isPlaying;
 
   const SpinningCoverArt({
@@ -92,7 +92,7 @@ class _SpinningCoverArtState extends State<SpinningCoverArt>
             alignment: Alignment.center,
             child: CircleAvatar(
               radius: 70.r,
-              backgroundImage: AssetImage(widget.imagePath),
+              backgroundImage: widget.imagePath.provider(),
               backgroundColor: Colors.transparent,
             ),
           ),

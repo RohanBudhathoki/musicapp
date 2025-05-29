@@ -1,6 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'dart:async';
+import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:mobx/mobx.dart';
@@ -78,7 +79,7 @@ abstract class _AudioStore with Store {
     try {
       await _repository.play();
     } catch (e) {
-      print("this playing error $e");
+      debugPrint(e.toString());
     }
   }
 
@@ -87,7 +88,7 @@ abstract class _AudioStore with Store {
     try {
       await _repository.pause();
     } catch (e) {
-      print("this Pause error $e");
+      debugPrint(e.toString());
     }
   }
 

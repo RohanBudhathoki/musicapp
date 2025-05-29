@@ -55,8 +55,8 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
                   builder: (_) {
                     final imagePath =
                         store.currentAudioIndex == 0
-                            ? Assets.png.welcome.path
-                            : Assets.png.shapeOfYouCover.path;
+                            ? Assets.png.welcome
+                            : Assets.png.shapeOfYouCover;
 
                     return SpinningCoverArt(
                       imagePath: imagePath,
