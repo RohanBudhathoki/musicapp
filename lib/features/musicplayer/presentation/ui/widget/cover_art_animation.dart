@@ -1,6 +1,7 @@
 import 'dart:math';
 
-import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SpinningCoverArt extends StatefulWidget {
@@ -38,7 +39,6 @@ class _SpinningCoverArtState extends State<SpinningCoverArt>
   void didUpdateWidget(covariant SpinningCoverArt oldWidget) {
     super.didUpdateWidget(oldWidget);
 
-    // Control animation on play/pause
     if (widget.isPlaying && !_controller.isAnimating) {
       _controller.repeat();
     } else if (!widget.isPlaying && _controller.isAnimating) {
@@ -54,43 +54,48 @@ class _SpinningCoverArtState extends State<SpinningCoverArt>
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _controller,
-      builder: (_, child) {
-        return Transform.rotate(
-          angle: _controller.value * 2 * pi,
-          child: child,
-        );
-      },
-      child: Stack(
+    return Neumorphic(
+      style: NeumorphicStyle(
+        shape: NeumorphicShape.concave,
+        depth: -10,
+        intensity: 0.8,
+        surfaceIntensity: 0.3,
+        boxShape: NeumorphicBoxShape.circle(),
+        color: const Color(0xFFEAF6FE),
+        shadowDarkColor: Colors.black26,
+        shadowLightColor: Colors.white,
+      ),
+      child: Container(
+        height: 300.r,
+        width: 300.r,
         alignment: Alignment.center,
-        children: [
-          Container(
+        padding: EdgeInsets.all(10.r),
+        child: AnimatedBuilder(
+          animation: _controller,
+          builder: (_, child) {
+            return Transform.rotate(
+              angle: _controller.value * 2 * pi,
+              child: child,
+            );
+          },
+          child: Container(
             height: 250.r,
             width: 250.r,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/png/cover_bg.png'),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              image: const DecorationImage(
+                image: AssetImage("assets/png/cover_bg.png"),
                 fit: BoxFit.cover,
               ),
-              shape: BoxShape.circle,
-              gradient: RadialGradient(
-                colors: [Colors.black87, Colors.black45],
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black12,
-                  blurRadius: 10,
-                  offset: Offset(0, 10),
-                ),
-              ],
+            ),
+            alignment: Alignment.center,
+            child: CircleAvatar(
+              radius: 70.r,
+              backgroundImage: AssetImage(widget.imagePath),
+              backgroundColor: Colors.transparent,
             ),
           ),
-          CircleAvatar(
-            radius: 70.r,
-            backgroundImage: AssetImage(widget.imagePath),
-          ),
-        ],
+        ),
       ),
     );
   }
