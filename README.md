@@ -32,17 +32,7 @@ It features a clean, layered architecture following **Clean Architecture princip
 
 ---
 
-lib/
-├── core/ # Shared utilities, themes, and constants
-├── features/
-│ └── music_player/
-│ ├── domain/ # Entities and use cases
-│ ├── data/ # Repositories and data sources
-│ ├── presentation/ # UI and MobX stores
-├── gen/ # Generated assets and files
-├── injection/ # Dependency injection setup
-└── main.dart # Entry point
-
+<pre lang="markdown"> ```text lib/ ├── core/ # Shared utilities, themes, and constants ├── features/ │ └── music_player/ │ ├── domain/ # Entities and use cases │ ├── data/ # Repositories and data sources │ ├── presentation/ # UI and MobX stores ├── gen/ # Generated assets and files ├── injection/ # Dependency injection setup └── main.dart # Entry point ``` </pre>
 ---
 ## 🚀 Getting Started
 
@@ -67,17 +57,21 @@ lib/
    ```bash
    flutter run
 ---
-##📦 Assets Used
- -  🎵 assets/audios/ – Local audio files bundled with the app
- -  🖼️ assets/png/ – App graphics, icons, and UI elements
+## 📦 Assets Used
 
+- 🎵 `assets/audios/` – Local audio files bundled with the app  
+- 🖼️ `assets/png/` – App graphics, icons, and UI elements
 
 ---
 ##📸 Screenshots
 
 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/19814c67-3562-41be-a573-c1830b08efb0" width="250">
+</p>
 
-![Simulator Screen Recording - iPhone 16 Pro Max - 2025-05-30 at 04 24 47](https://github.com/user-attachments/assets/19814c67-3562-41be-a573-c1830b08efb0)
+> 🎥 Simulator screen recording on iPhone 16 Pro Max showcasing the music playback UI.
+
 
 ---
 ##📄 License
