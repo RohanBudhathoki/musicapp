@@ -31,7 +31,10 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Audio Player', style: TextStyle(fontSize: 20.sp)),
+        title: Text(
+          'Now Playing',
+          style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
       ),
       body: Padding(
@@ -46,13 +49,31 @@ class _AudioPlayerScreenState extends State<AudioPlayerScreen> {
                         ? 'assets/png/welcome.png'
                         : 'assets/png/shape_of_you_cover.png';
 
-                return ClipOval(
-                  child: Image.asset(
-                    imagePath,
-                    width: 200.w,
-                    height: 200.w,
-                    fit: BoxFit.cover,
-                  ),
+                return Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Container(
+                      height: 250.r,
+                      width: 250.r,
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        gradient: RadialGradient(
+                          colors: [Colors.black87, Colors.black45],
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black12,
+                            blurRadius: 10,
+                            offset: Offset(0, 10),
+                          ),
+                        ],
+                      ),
+                    ),
+                    CircleAvatar(
+                      radius: 80.r,
+                      backgroundImage: AssetImage(imagePath),
+                    ),
+                  ],
                 );
               },
             ),
