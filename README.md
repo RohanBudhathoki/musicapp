@@ -74,9 +74,7 @@ lib/
 
 ---
 ##📸 Screenshots
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/6d559aee-639d-47d7-83bd-ff19fc609478" width="250">
-</p>
+![Simulator Screen Recording - iPhone 16 Pro Max - 2025-05-30 at 04 24 47](https://github.com/user-attachments/assets/19814c67-3562-41be-a573-c1830b08efb0)
 
 ---
 ##📄 License
