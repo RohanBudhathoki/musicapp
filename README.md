@@ -32,7 +32,20 @@ It features a clean, layered architecture following **Clean Architecture princip
 
 ---
 
-<pre lang="markdown"> ```text lib/ ├── core/ # Shared utilities, themes, and constants ├── features/ │ └── music_player/ │ ├── domain/ # Entities and use cases │ ├── data/ # Repositories and data sources │ ├── presentation/ # UI and MobX stores ├── gen/ # Generated assets and files ├── injection/ # Dependency injection setup └── main.dart # Entry point ``` </pre>
+## 📁 Project Structure
+
+```text
+lib/
+├── core/               # Shared utilities, themes, and constants
+├── features/
+│   └── music_player/
+│       ├── domain/         # Entities and use cases
+│       ├── data/           # Repositories and data sources
+│       └── presentation/   # UI and MobX stores
+├── gen/                # Generated assets and files
+├── injection/          # Dependency injection setup
+└── main.dart           # Entry point of the app
+```
 ---
 ## 🚀 Getting Started
 
